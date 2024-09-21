@@ -25,13 +25,13 @@ public class StudentController {
 
     @PostMapping("/addStudent")
     public boolean addStudent(@RequestBody Student student) {
-        System.out.println("正在保存学生对象" + student);
+        System.out.println("正在保存用户对象" + student);
         return studentService.save(student);
     }
 
     @PostMapping("/login")
     public boolean login(@RequestBody Student student) {
-        System.out.println("正在验证学生登陆 " + student);
+        System.out.println("正在验证用户登陆 " + student);
         Student s = studentService.findById(student.getSid());
         if (s == null || !s.getPassword().equals(student.getPassword())) {
             return false;
@@ -49,13 +49,13 @@ public class StudentController {
 
     @GetMapping("/findById/{sid}")
     public Student findById(@PathVariable("sid") Integer sid) {
-        System.out.println("正在查询学生信息 By id " + sid);
+        System.out.println("正在查询用户信息 By id " + sid);
         return studentService.findById(sid);
     }
 
     @GetMapping("/findByPage/{page}/{size}")
     public List<Student> findByPage(@PathVariable("page") int page, @PathVariable("size") int size) {
-        System.out.println("查询学生列表分页 " + page + " " + size);
+        System.out.println("查询用户列表分页 " + page + " " + size);
         return studentService.findByPage(page, size);
     }
 
@@ -66,7 +66,7 @@ public class StudentController {
 
     @GetMapping("/deleteById/{sid}")
     public boolean deleteById(@PathVariable("sid") int sid) {
-        System.out.println("正在删除学生 sid：" + sid);
+        System.out.println("正在删除用户 sid：" + sid);
         return studentService.deleteById(sid);
     }
 
@@ -75,4 +75,9 @@ public class StudentController {
         System.out.println("更新 " + student);
         return studentService.updateById(student);
     }
+
+
+
+
+
 }

@@ -292,10 +292,10 @@ const routes = [
     ]
   },
   {
-    path: '/student',
+    path: '/user',
     name: 'student',
     component: student,
-    redirect: '/studentHome',
+    redirect: '/userHome',
     meta: {requireAuth: true},
     children: [
       {
@@ -305,7 +305,7 @@ const routes = [
         meta: {requireAuth: true},
         children: [
           {
-            path: '/studentHome',
+            path: '/userHome',
             name: '学生主页',
             component: studentHome,
             meta: {requireAuth: true},
