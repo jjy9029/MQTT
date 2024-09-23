@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auggie.student_server.mapper.WarningsMapper">
+    <select id="findBySearch" resultType="com.auggie.student_server.entity.Warnings">
+        SELECT * FROM studentms.warning
+        <where>
+            <if test="topic != null">
+                topic = #{topic}
+            </if>
+            <if test="time != null">
+                time = #{time}
+            </if>
+            <if test="param != null">
+                param = #{param}
+            </if>
+        </where>
+    </select>
+    <select id="findWarning" resultType="java.lang.Integer"></select>
+</mapper>

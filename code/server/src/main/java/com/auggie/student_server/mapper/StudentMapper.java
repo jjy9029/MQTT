@@ -29,7 +29,7 @@ public interface StudentMapper {
     public boolean updateById(@Param("student") Student student);
 
 //    insert
-8     public boolean save(@Param("student") Student student);
+     public boolean save(@Param("student") Student student);
 
 //    delete
     public boolean deleteById(@Param("sid") Integer sid);

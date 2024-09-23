@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.auggie.student_server.mapper.SituationMapper">
+    <insert id="insertSituation">
+        INSERT INTO studentms.situation (topic, time, param)
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="topic != null">
+                #{topic},
+            </if>
+            <if test="time != null">
+                #{time},
+            </if>
+            <if test="param != null">
+                #{param},
+            </if>
+        </trim>
+    </insert>
+
+<!--    <insert id="insertWarnings" >-->
+<!--&lt;!&ndash;        &lt;!&ndash; 先检查是否在范围内 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <selectKey keyProperty="inRange" resultType="boolean" order="BEFORE">&ndash;&gt;-->
+<!--&lt;!&ndash;            SELECT&ndash;&gt;-->
+<!--&lt;!&ndash;            CASE&ndash;&gt;-->
+<!--&lt;!&ndash;            WHEN #{param} in (select down from studentms.type_m where type = #{topic},select up from studentms.type_m where type = #{topic}) THEN true&ndash;&gt;-->
+<!--&lt;!&ndash;            ELSE false&ndash;&gt;-->
+<!--&lt;!&ndash;            END&ndash;&gt;-->
+<!--&lt;!&ndash;            FROM studentms.type_m&ndash;&gt;-->
+<!--&lt;!&ndash;            WHERE type = #{topic}&ndash;&gt;-->
+<!--&lt;!&ndash;        </selectKey>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        &lt;!&ndash; 如果不在范围内，则插入 &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <if test="!inRange">&ndash;&gt;-->
+<!--&lt;!&ndash;            INSERT INTO studentms.warnings (topic, time, param)&ndash;&gt;-->
+<!--&lt;!&ndash;            VALUES (#{topic}, #{time}, #{param})&ndash;&gt;-->
+<!--&lt;!&ndash;        </if>&ndash;&gt;-->
+
+
+
+
+<!--        INSERT INTO studentms.warning-->
+<!--        (topic, time, param)-->
+<!--        VALUES (#{topic}, #{time}, #{param})-->
+
+<!--        <if test="  ">-->
+<!--            #{param} > #{up} or #{down} > #{param};-->
+<!--        </if>-->
+<!--    </insert>-->
+    <select id="selectLimitsByTopic" parameterType="string" resultType="map">
+        SELECT down AS "down", up AS "up"
+        FROM studentms.type_m
+        WHERE type = #{topic}
+    </select>
+    <insert id="insertWarnings" parameterType="map">
+        INSERT INTO studentms.warning (topic, time, param)
+        VALUES (#{topic}, #{time}, #{param})
+    </insert>
+</mapper>
+<!--        #{param} >= down AND #{param} <= up-->

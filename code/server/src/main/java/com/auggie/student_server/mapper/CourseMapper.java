@@ -7,14 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * @Auther: auggie
- * @Date: 2022/2/9 13:30
- * @Description: CourseMapper
- * @Version 1.0.0
- */
 
-@Repository
+
 @Mapper
 public interface CourseMapper {
 //    select
