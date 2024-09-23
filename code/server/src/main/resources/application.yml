@@ -4,6 +4,16 @@ spring:
     url: jdbc:mysql://localhost:3306/studentms?setUnicode=true&characterEncoding=utf8&useAffectedRows=true
     username: root
     password: 123456
+  kafka:
+    bootstrap-servers: 172.29.44.183:9092 172.29.44.183:9093 ,172.29.44.183:9094 # Kafka 集群的地址
+    consumer:
+      group-id: test-group  # 消费者组ID
+      auto-offset-reset: earliest  # 从最早的偏移量开始消费
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 mybatis:
   type-aliases-package: com.auggie.student_server.entity
